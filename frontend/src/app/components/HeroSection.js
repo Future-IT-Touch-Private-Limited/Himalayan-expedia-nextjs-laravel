@@ -9,27 +9,19 @@ import axios from "axios";
 import { rooturl, storageurl } from "./Store/Rooturl";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
-
 const HeroSection = () => {
-  const [textdata, settextData] = useState();
-  const [number, setPhone] = useState("");
+const [textdata,settextData]=useState();
+const handelchange=(e)=>{
+  settextData({...textdata,[e.target.name]:e.target.value})
+}
+useEffect(()=>{
+let date= new Date(Date.now())
+date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+  settextData({...textdata,date})
+},[])
+const state= useSelector(state=>state.homeSlice)
 
-  const handlePhoneChange = (value) => {
-    setPhone(value);
-  };
 
-  const handelchange = (e) => {
-    settextData({ ...textdata, [e.target.name]: e.target.value });
-  };
-
-  useEffect(() => {
-    let date = new Date(Date.now());
-    date = `${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`;
-    settextData({ ...textdata, date });
-  }, []);
-  const state = useSelector((state) => state.homeSlice);
 
   const handelforSubmit = async (e) => {
     e.preventDefault();
@@ -53,11 +45,11 @@ const HeroSection = () => {
   return (
     <div className=" relative  lg:mb-[100px]">
       <Swiper
-        spaceBetween={0}
-        slidesPerView={1}
-        loop={true}
+        spaceBetween={50} // Space between slides
+        slidesPerView={1} // Show 1 slide at a time
+        loop={true} // Infinite loop
         autoplay={{
-          delay: 400,
+          delay: 1000,
           disableOnInteraction: true,
         }}
         navigation={{

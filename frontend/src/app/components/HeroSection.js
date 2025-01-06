@@ -9,8 +9,12 @@ import axios from "axios";
 import { rooturl, storageurl } from "./Store/Rooturl";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import { Autoplay} from 'swiper/modules';
+
+
 const HeroSection = () => {
 const [textdata,settextData]=useState();
+
 const handelchange=(e)=>{
   settextData({...textdata,[e.target.name]:e.target.value})
 }
@@ -44,11 +48,13 @@ e.preventDefault()
       <Swiper
         spaceBetween={50} // Space between slides
         slidesPerView={1} // Show 1 slide at a time
-        loop={true} // Infinite loop
+        loop={true} 
         autoplay={{
-          delay: 1000,
-          disableOnInteraction: true,
-        }}
+          delay: 2500,
+          disableOnInteraction:true
+                }}
+        modules={[Autoplay]}
+
         navigation={{
           nextEl: ".swiper-button-next", // Custom next button
           prevEl: ".swiper-button-prev", // Custom prev button

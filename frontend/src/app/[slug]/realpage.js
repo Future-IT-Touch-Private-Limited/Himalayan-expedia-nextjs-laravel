@@ -19,6 +19,11 @@ import { FaWhatsapp } from "react-icons/fa";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import TestiMonial from "../components/testimonials/TestiMonial";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa";
+import { FaMapLocationDot } from "react-icons/fa6";
+
+
 export function Realpage({ slug }) {
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -160,7 +165,7 @@ const [textdata,settextData]=useState();
 
 useEffect(()=>{
 let date= new Date(Date.now())
-date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
+ date=`${date.getDay()}-${date.getMonth()+1}-${date.getFullYear()}`
   settextData({...textdata,date,trip:slug})
 },[])
 
@@ -350,9 +355,10 @@ date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
                 To
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-2 text-red-500">
-                  <i className="fas fa-map-marker-alt"></i>
+                <span className="absolute left-3 top-3 text-red-500">
+                <FaLocationDot />
                 </span>
+                  
                 <input
                   id="to"
                   type="text"
@@ -375,7 +381,7 @@ date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-2 text-red-500">
-                  <i className="fas fa-map-marker-alt"></i>
+                   <FaMapLocationDot />
                 </span>
                 <input
                   id="from"
@@ -399,7 +405,7 @@ date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-2 text-red-500">
-                  <i className="fas fa-envelope"></i>
+                  <FaUser />
                 </span>
                 <input
                   id="text"

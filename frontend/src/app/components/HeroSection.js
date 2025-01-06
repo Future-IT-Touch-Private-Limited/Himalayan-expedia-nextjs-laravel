@@ -9,19 +9,30 @@ import axios from "axios";
 import { rooturl, storageurl } from "./Store/Rooturl";
 import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 const HeroSection = () => {
-const [textdata,settextData]=useState();
-const handelchange=(e)=>{
-  settextData({...textdata,[e.target.name]:e.target.value})
-}
-useEffect(()=>{
-let date= new Date(Date.now())
-date=`${date.getDay()}-${date.getMonth()}-${date.getFullYear()}`
-  settextData({...textdata,date})
-},[])
-const state= useSelector(state=>state.homeSlice)
+  const [textdata, settextData] = useState();
+  const [number, setPhone] = useState("");
 
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+    settextData({ ...textdata, number: number });
+  };
 
+  const handelchange = (e) => {
+    settextData({ ...textdata, [e.target.name]: e.target.value });
+
+  };
+
+  useEffect(() => {
+    let date = new Date(Date.now());
+    date = `${date.getDay()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    settextData({ ...textdata, date });
+  }, []);
+
+  const state = useSelector((state) => state.homeSlice);
 
   const handelforSubmit = async (e) => {
     e.preventDefault();
@@ -30,28 +41,34 @@ const state= useSelector(state=>state.homeSlice)
 
 
 
+
     const info = await axios.post(`${rooturl}/message`, textdata);
     if (info.data.success) {
-      settextData();
+      
       Swal.fire({
         title: "Success!",
         text: info.data.message,
         icon: "success",
         confirmButtonText: "ok",
       });
+
+
+
     }
+
+    window.location.reload();
   };
 
   return (
     <div className=" relative  lg:mb-[100px]">
       <Swiper
-        spaceBetween={50} // Space between slides
-        slidesPerView={1} // Show 1 slide at a time
-        loop={true} // Infinite loop
-        autoplay={{
-          delay: 1000,
-          disableOnInteraction: true,
-        }}
+         spaceBetween={0}
+         slidesPerView={1}
+         loop={true}
+         autoplay={{
+           delay: 300,
+           disableOnInteraction: false, 
+         }}
         navigation={{
           nextEl: ".swiper-button-next", // Custom next button
           prevEl: ".swiper-button-prev", // Custom prev button
@@ -173,9 +190,9 @@ const state= useSelector(state=>state.homeSlice)
                   onChange={(e) => handelchange(e)}
                 /> */}
                 <PhoneInput
-        country={"in"}
-        value={number} 
-        onChange={handlePhoneChange} 
+        country={"in"} // Default country
+        value={number}  // Bind state to the phone input
+        onChange={handlePhoneChange} // Update state on change
         inputProps={{
           name: "number",
           required: true,

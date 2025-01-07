@@ -23,7 +23,8 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 
-
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 export function Realpage({ slug }) {
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -39,6 +40,8 @@ export function Realpage({ slug }) {
     applied_at: "",
     status: "pending",
   });
+
+
 
   const [visaCardFilter, setvisaCardFilter] = useState();
   const [countrydata, setcountrydata] = useState();
@@ -77,6 +80,15 @@ export function Realpage({ slug }) {
       setcountrydata(state2.data);
     
   }, [state2]);
+
+  const [number, setPhone] = useState("");
+
+  const handlePhoneChange = (value) => {
+    setPhone(value);
+    settextData({ ...textdata, number: number });
+  };
+
+  
 
   const handleSubmit = async (e, me) => {
     const localUserId = window.localStorage.getItem("user_id");
@@ -429,7 +441,7 @@ let date= new Date(Date.now())
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-2 text-gray-700">+91</span>
-                <input
+                {/* <input
                   id="phone"
                   type="text"
                   placeholder="Enter Your Phone Number"
@@ -438,7 +450,17 @@ let date= new Date(Date.now())
                   value={textdata?.number}
                   required
                   onChange={(e)=>handelchange(e)}
-                />
+                /> */}
+                 <PhoneInput
+        country={"in"} // Default country
+        value={number}  // Bind state to the phone input
+        onChange={handlePhoneChange} // Update state on change
+        inputProps={{
+          name: "number",
+          required: true,
+          autoFocus: true,
+        }}
+      />
               </div>
             </div>
 

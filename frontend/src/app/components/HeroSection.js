@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-
+import { Autoplay} from 'swiper/modules';
 const HeroSection = () => {
   const [textdata, settextData] = useState();
   const [number, setPhone] = useState("");
@@ -66,9 +66,12 @@ const HeroSection = () => {
          slidesPerView={1}
          loop={true}
          autoplay={{
-           delay: 300,
+           delay: 1500,
            disableOnInteraction: false, 
          }}
+
+
+         modules={[Autoplay]}
         navigation={{
           nextEl: ".swiper-button-next", // Custom next button
           prevEl: ".swiper-button-prev", // Custom prev button

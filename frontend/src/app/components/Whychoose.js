@@ -1,22 +1,40 @@
-"use client"
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+// import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/effect-coverflow';
-import 'swiper/css/pagination';
-import { EffectCoverflow, Autoplay,FreeMode } from 'swiper/modules';
+// // Import Swiper styles
+// import "swiper/css";
+// import "swiper/css/effect-coverflow";
+// import "swiper/css/pagination";
+
+// import Slider from "react-slick";
+
+import { EffectCoverflow, Autoplay, FreeMode } from "swiper/modules";
 import { useSelector } from "react-redux";
 import { storageurl } from "./Store/Rooturl";
 
-
-
-
+import Slider from "react-slick";
 const Whychoose = () => {
-  const state= useSelector(state=>state.homeSlice)
+  const state = useSelector((state) => state.homeSlice);
+  const images = [
+    { id: 1, src: "/img/hp1.webp" },
+    { id: 2, src: "/img/hp1.webp" },
+    { id: 3, src: "/img/hp1.webp" },
+    { id: 4, src: "/img/hp1.webp" },
+    { id: 5, src: "/img/hp1.webp" },
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(2); // Start with the middle image
+
+  const handlePrev = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
 
   return (
     <div className="px-5 md:px-16 xl:px-32 my-5 md:my-10 lg:my-16">
@@ -113,41 +131,141 @@ const Whychoose = () => {
         </div>
       </div>
 
-      <div className=" my-5 lg:my-16  md:py-5">
-        {state &&
-      <Swiper
-      slidesPerView={4}
-      spaceBetween={30}
-      freeMode={true}
-      
-      // modules={[FreeMode, Pagination]}
-      // className="mySwiper"
-      
-        loop={true}
+      <div></div>
 
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-        }}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        // pagination={true}
-        modules={[Autoplay,FreeMode]}
-        className="mySwiper h-[20rem] overflow-hidden"
-      >
-        {state?.info?.slider_imgs?.map((img,index)=>(<SwiperSlide key={index} className="rounded-md overflow-hidden">
-          <img src={`${storageurl}/${img}`}  className="w-full h-full"/>
-        </SwiperSlide>))}
+      {/* <div className="w-full flex justify-center items-center mt-6 h-[500px]  ">
+
+        <div className="flex justify-center items-center gap-8 " >
+
+          <img className="w-[170px] h-[320px] rounded-[20px] cover" src='/img/hp1.webp' />
+          <img className="w-[200px] h-[400px] rounded-[20px] cover"  src='/img/hp1.webp' />
+
+          <img className="w-[230px] h-[450px] rounded-[20px] cover"  src='/img/hp1.webp' />
+
+          <img className="w-[200px] h-[400px] rounded-[20px] cover"  src='/img/hp1.webp' />
+
+          <img className="w-[170px] h-[320px] rounded-[20px] cover"  src='/img/hp1.webp' />
+
         
-      </Swiper>
-}
-        {/* <img src="/img/about-hero-right.webp"></img> */}
+        </div>
+
+
+
+      </div> */}
+
+      <div className="w-full flex flex-col justify-center items-center mt-6 h-[500px]">
+        <div className="relative w-full flex justify-center items-center overflow-hidden">
+          <button
+            className="absolute left-0 text-xl p-4  rounded-full"
+            onClick={handlePrev}
+          >
+            ◀
+          </button>
+          <button
+            className="absolute right-0 text-xl p-4  rounded-full"
+            onClick={handleNext}
+          >
+            ▶
+          </button>
+
+          <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
+            {images.map((image, index) => {
+              const isActive = index === currentIndex;
+              const isPrev =
+                index === (currentIndex - 1 + images.length) % images.length;
+              const isNext = index === (currentIndex + 1) % images.length;
+
+              return (
+                <div className="w-full flex flex-col justify-center items-center mt-6 h-[500px]">
+                  <div className="relative w-full flex justify-center items-center overflow-hidden">
+                    <button
+                      className="absolute left-0 text-xl p-4 rounded-full"
+                      onClick={handlePrev}
+                    >
+                      ◀
+                    </button>
+                    <button
+                      className="absolute right-0 text-xl p-4 rounded-full"
+                      onClick={handleNext}
+                    >
+                      ▶
+                    </button>
+
+                    <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
+                      {images.map((image, index) => {
+            
+                        const isActive = index === currentIndex;
+                        const isPrev =
+                          index ===
+                          (currentIndex - 1 + images.length) % images.length;
+                        const isNext =
+                          index === (currentIndex + 1) % images.length;
+
+                        return (
+                          <div
+                            key={image.id}
+                            className={`flex justify-center items-center transition-all duration-300 ${
+                              isActive
+                                ? "w-[250px] h-[450px]"
+                                : isPrev || isNext
+                                ? "w-[200px] h-[400px]"
+                                : "w-[170px] h-[320px] opacity-50"
+                            }`}
+                          >
+                            <img
+                              src={image.src}
+                              alt={`Slide ${index + 1}`}
+                              className={`flex justify-center rounded-[20px] items-center transition-all duration-300 ${
+                                isActive
+                                  ? "w-[250px] h-[450px]"
+                                  : isPrev || isNext
+                                  ? "w-[200px] h-[400px]"
+                                  : "w-[170px] h-[320px] opacity-50"
+                              }`}
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
+
+      {/* <div className=" my-5 lg:my-16  md:py-5">
+        {state && (
+          <Swiper
+            slidesPerView={4}
+            spaceBetween={30}
+            freeMode={true}
+            loop={true}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: false,
+            }}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 100,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            // pagination={true}
+            modules={[Autoplay, FreeMode]}
+            className="mySwiper h-[20rem] overflow-hidden"
+          >
+            {state?.info?.slider_imgs?.map((img, index) => (
+              <SwiperSlide key={index} className="rounded-md overflow-hidden">
+                <img src={`${storageurl}/${img}`} className="w-full h-full" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+    
+      </div> */}
     </div>
   );
 };

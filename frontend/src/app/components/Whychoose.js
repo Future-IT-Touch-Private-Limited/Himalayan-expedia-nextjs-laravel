@@ -153,88 +153,68 @@ const Whychoose = () => {
 
       </div> */}
 
-      <div className="w-full flex flex-col justify-center items-center mt-6 h-[500px]">
-        <div className="relative w-full flex justify-center items-center overflow-hidden">
-          <button
-            className="absolute left-0 text-xl p-4  rounded-full"
-            onClick={handlePrev}
+
+
+<div className="w-full flex flex-col justify-center items-center mt-6 h-[500px]">
+  <div className="relative w-full flex justify-center items-center overflow-hidden">
+    <button
+      className="absolute left-0 text-xl p-4 rounded-full"
+      onClick={handlePrev}
+    >
+      ◀
+    </button>
+    <button
+      className="absolute right-0 text-xl p-4 rounded-full"
+      onClick={handleNext}
+    >
+      ▶
+    </button>
+
+    <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
+      {state?.info?.slider_imgs?.map((image, index) => {
+        // Calculate the position of each image relative to the current index
+        const isActive = index === currentIndex;
+        const isPrev =
+          index === (currentIndex - 1 + images.length) % images.length;
+        const isNext = index === (currentIndex + 1) % images.length;
+
+        return (
+          <div
+            key={image.id}
+            className={`flex justify-center items-center transition-all duration-300 ${
+              isActive
+                ? "w-[250px] h-[450px]"
+                : isPrev || isNext
+                ? "w-[200px] h-[400px]"
+                : "w-[170px] h-[320px] opacity-50"
+            }`}
           >
-            ◀
-          </button>
-          <button
-            className="absolute right-0 text-xl p-4  rounded-full"
-            onClick={handleNext}
-          >
-            ▶
-          </button>
-
-          <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
-            {images.map((image, index) => {
-              const isActive = index === currentIndex;
-              const isPrev =
-                index === (currentIndex - 1 + images.length) % images.length;
-              const isNext = index === (currentIndex + 1) % images.length;
-
-              return (
-                <div className="w-full flex flex-col justify-center items-center mt-6 h-[500px]">
-                  <div className="relative w-full flex justify-center items-center overflow-hidden">
-                    <button
-                      className="absolute left-0 text-xl p-4 rounded-full"
-                      onClick={handlePrev}
-                    >
-                      ◀
-                    </button>
-                    <button
-                      className="absolute right-0 text-xl p-4 rounded-full"
-                      onClick={handleNext}
-                    >
-                      ▶
-                    </button>
-
-                    <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
-                      {images.map((image, index) => {
-            
-                        const isActive = index === currentIndex;
-                        const isPrev =
-                          index ===
-                          (currentIndex - 1 + images.length) % images.length;
-                        const isNext =
-                          index === (currentIndex + 1) % images.length;
-
-                        return (
-                          <div
-                            key={image.id}
-                            className={`flex justify-center items-center transition-all duration-300 ${
-                              isActive
-                                ? "w-[250px] h-[450px]"
-                                : isPrev || isNext
-                                ? "w-[200px] h-[400px]"
-                                : "w-[170px] h-[320px] opacity-50"
-                            }`}
-                          >
-                            <img
-                              src={image.src}
-                              alt={`Slide ${index + 1}`}
-                              className={`flex justify-center rounded-[20px] items-center transition-all duration-300 ${
-                                isActive
-                                  ? "w-[250px] h-[450px]"
-                                  : isPrev || isNext
-                                  ? "w-[200px] h-[400px]"
-                                  : "w-[170px] h-[320px] opacity-50"
-                              }`}
-                            />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <img
+              src={`${storageurl}/${image}`}
+              alt={`Slide ${index + 1}`}
+              className={`flex justify-center rounded-[20px] items-center transition-all duration-300 ${
+                isActive
+                  ? "w-[250px] h-[450px]"
+                  : isPrev || isNext
+                  ? "w-[200px] h-[400px]"
+                  : "w-[170px] h-[320px] opacity-50"
+              }`}
+            />
           </div>
-        </div>
-      </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
 
+      
+
+
+
+
+
+
+    
       {/* <div className=" my-5 lg:my-16  md:py-5">
         {state && (
           <Swiper

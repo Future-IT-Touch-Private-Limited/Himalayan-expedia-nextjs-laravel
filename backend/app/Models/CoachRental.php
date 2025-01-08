@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CoachRental extends Model
+class CoachRentalCoachRental extends Model
 {
     //
     protected $fillable=[

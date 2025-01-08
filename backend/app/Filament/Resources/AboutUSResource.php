@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\AboutUSResource\Pages;
 use App\Filament\Resources\AboutUSResource\RelationManagers;
-use App\Models\AboutUS;
+use App\Models\AboutUs;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -25,7 +25,7 @@ use Filament\Tables\Columns\TextColumn;
 
 class AboutUSResource extends Resource
 {
-    protected static ?string $model = AboutUS::class;
+    protected static ?string $model = AboutUs::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

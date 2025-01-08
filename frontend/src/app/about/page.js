@@ -8,7 +8,7 @@ import TestiMonial from "../components/testimonials/TestiMonial";
 import Vision from "../components/Vision";
 import axios from "axios";
 import { rooturl, storageurl } from "../components/Store/Rooturl";
-const page = () => {
+const Page = () => {
 const [data,setData]=useState();
 
 useEffect(()=>{
@@ -66,4 +66,4 @@ fetchapi()
   );
 };
 
-export default page;
+export default Page;

@@ -171,7 +171,7 @@ const Whychoose = () => {
     </button>
 
     <div className="flex gap-4 items-center transition-transform duration-300 ease-in-out">
-      {state?.info?.slider_imgs?.map((image, index) => {
+      {state?.info?.slider_imgs?.slice(0,5)?.map((image, index) => {
         // Calculate the position of each image relative to the current index
         const isActive = index === currentIndex;
         const isPrev =

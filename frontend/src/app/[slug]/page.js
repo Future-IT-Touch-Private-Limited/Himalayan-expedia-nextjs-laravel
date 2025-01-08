@@ -9,7 +9,7 @@ import { rooturl } from "../components/Store/Rooturl";
 import Swal from "sweetalert2";
 export async function generateStaticParams() {
   try {
-    const response = await axios.get(`${rooturl}/country`, {
+    const response = await axios.get(`${rooturl}/alltours`, {
       headers: {
         "Content-Type": "application/json",
       },

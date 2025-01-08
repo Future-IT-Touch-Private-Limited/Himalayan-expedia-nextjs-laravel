@@ -7,7 +7,7 @@ const Vision = ({data}) => {
   {data &&
     <div className='px-5 md:px-16 xl:px-32 my-5 md:mt-20 space-y-5'>
 {data?.map((info,index)=>(
-  <section className={`flex flex-col-reverse  ${index %2==0?"lg:flex-row":"lg:flex-row-reverse"} md:gap-10 items-center `}>
+  <section key={index} className={`flex flex-col-reverse  ${index %2==0?"lg:flex-row":"lg:flex-row-reverse"} md:gap-10 items-center `}>
      
      <div className="lg:w-1/2 flex  relative w-full h-64 lg:h-[380px]">
        <img

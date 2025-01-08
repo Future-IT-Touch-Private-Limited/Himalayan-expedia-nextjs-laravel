@@ -14,7 +14,7 @@ import { rooturl, storageurl } from "../components/Store/Rooturl";
 
 
 
-const ContactUsPage = () => {
+const Page = () => {
 
 const [data,setdata]=useState()
 
@@ -247,4 +247,4 @@ useEffect(()=>{
   );
 };
 
-export default ContactUsPage;
+export default Page;

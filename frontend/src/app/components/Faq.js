@@ -7,14 +7,19 @@ import { rooturl } from './Store/Rooturl';
 const Faq = () => {
   const [faq,setData]=useState();
   
-  useEffect(()=>{
-    const fetchapi=async()=>{
-      const info= await axios.get(`${rooturl}/about`)
-      setData(info?.data?.faq);
-    }
-    fetchapi()
-    
-    },[ ])
+  useEffect(() => {
+    const fetchapi = async () => {
+      try {
+        const info = await axios.get(`${rooturl}/about`);
+        setData(info?.data?.faq);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+  
+    fetchapi();
+  }, []);
+  
 
   // State for managing opened FAQ
   const [openedIndex, setOpenedIndex] = useState(null); // No question open by default

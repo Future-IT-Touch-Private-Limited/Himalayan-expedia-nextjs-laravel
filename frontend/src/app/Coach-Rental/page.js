@@ -17,13 +17,19 @@ const [data,setDate]=useState();
   };
 
 
-  useEffect(()=>{
-    const fetchapi=async()=>{
-      const info= await axios.get(`${rooturl}/coachrental`)
-      setDate(info.data)
-    }
-    fetchapi()
-  },[])
+  useEffect(() => {
+    const fetchapi = async () => {
+      try {
+        const info = await axios.get(`${rooturl}/coachrental`);
+        setDate(info.data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchapi();
+  }, [])
+
 
   return (<>{ data &&
     <div className="">

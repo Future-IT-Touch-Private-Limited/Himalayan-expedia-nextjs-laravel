@@ -18,7 +18,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 
-export default function blogDetail() {
+export default function Page() {
   const dispatch = useDispatch();
   const state = useSelector((state) => state.allBlog);
   const [blogdata, setblogdata] = useState([]);

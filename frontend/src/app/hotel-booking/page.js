@@ -9,7 +9,7 @@ import { rooturl, storageurl } from "../components/Store/Rooturl";
 
 
 
-const page = () => {
+const Page = () => {
 const [data,setDate]=useState();
 
 
@@ -183,4 +183,4 @@ const [data,setDate]=useState();
   );
 };
 
-export default page;
+export default Page;

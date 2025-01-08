@@ -15,10 +15,12 @@ export default function StepByStep({processTime}) {
   
 
   useEffect(() => {
+    const currentElement = stepbystepRef.current; // Copy the ref value to a local variable
+  
     const checkHeight = () => {
-      if (stepbystepRef.current) {
-        const elementHeight = stepbystepRef.current.offsetHeight;
-        const parentHeight = stepbystepRef.current.parentElement.offsetHeight;
+      if (currentElement) {
+        const elementHeight = currentElement.offsetHeight;
+        const parentHeight = currentElement.parentElement.offsetHeight;
   
         if (elementHeight >= parentHeight * 0.2) {
           setShow(true);
@@ -29,17 +31,19 @@ export default function StepByStep({processTime}) {
     };
   
     const observer = new ResizeObserver(checkHeight);
-    if (stepbystepRef.current) {
-      observer.observe(stepbystepRef.current);
+  
+    if (currentElement) {
+      observer.observe(currentElement);
     }
   
     // Cleanup
     return () => {
-      if (stepbystepRef.current) {
-        observer.unobserve(stepbystepRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, []);
+  
   
   const date = new Date();
   const monthNames = [

@@ -5,14 +5,9 @@ import ServiceFrom from "../components/ServiceFrom";
 import TourPackage from "../components/TourPackage";
 import axios from "axios";
 import { rooturl, storageurl } from "../components/Store/Rooturl";
+import Image from 'next/image'
 
-
-
-
-
-
-
-export default function page() {
+ function Page() {
 
 const [data,setDate]=useState();
   const [activeIndex, setActiveIndex] = useState(null);
@@ -34,7 +29,10 @@ const [data,setDate]=useState();
     <div className="">
       <div className="car-coach-rentals-banner relative h-[350px] md:h-[60vh] w-full overflow-hidden">
         {/* Background Image */}
-        <img
+        <Image
+        width={"100%"}
+        height={"100%"}
+
         src={`${storageurl}/${data?.banner_img}`}
           alt="Car & Coach Rentals"
           className="absolute top-0 left-0 w-full h-full object-cover"
@@ -62,7 +60,8 @@ const [data,setDate]=useState();
         <div className="xl:col-span-2 shadow-lg">
           <div className="p-5 space-y-6">
           <div className="mb-6">
-        <img  src={`${storageurl}/${data?.car_img}`}
+          <Image  width={"100%"}
+        height={"100%"} src={`${storageurl}/${data?.car_img}`}
          alt="Nubra.webp" className="w-full h-64 object-cover rounded-md" />
       </div>            <h5 className="text-xl md:text-2xl lg:text-3xl font-bold text-start mb-6">
               Find the Perfect Vehicle for Your Journey
@@ -168,3 +167,6 @@ const [data,setDate]=useState();
 }</>
   );
 }
+
+
+export default Page;

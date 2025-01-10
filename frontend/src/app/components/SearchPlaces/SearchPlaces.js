@@ -124,7 +124,20 @@ useEffect(()=>{
 
   return (
     <div className="SearchPlace bg-[#E7F4F6] mt-10 py-10 overflow-hidden" >
+
+<div className="mx-auto mb-4 w-full max-w-2xl text-center">
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 lg:text-4xl">Explore Package</h2>
+            <span className="mt-2 block text-base font-normal text-neutral-500 dark:text-neutral-400 sm:text-lg md:mt-3">
+              Discover great places near where you live
+            </span>
+          </div>
+
+
+
+
       <div className="px-5 md:px-16 xl:px-32 py-2">
+
+
         <div className="navigation-links-parent  flex justify-between flex-col items-center gap-5  lg:flex-row ">
          <div className="w-full xl:w-[30%] relative flex flex-col ">
            <div className="w-full  z-40   text-black bg-white py-2 flex items-center gap-5 rounded-full px-5 shadow-md">
@@ -148,6 +161,7 @@ useEffect(()=>{
               <IoSearch className="" />
             </label>
           </div>
+          
          {inpuValue  && flagsData&&<div className={`SearchReasult absolute z-20  w-full  flex flex-col gap-1   bg-white rounded rounded-tl-2xl rounded-tr-2xl ${flagsData.length && "pt-20 pb-5"} `}>
             { flagsData && flagsData.map((elm)=>{
               return(

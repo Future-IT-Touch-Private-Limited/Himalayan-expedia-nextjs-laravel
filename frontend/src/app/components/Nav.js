@@ -47,21 +47,20 @@ dispach(getHomeInfo())
   const closeMenu = () => setToggler(false);
   const toggleRentalDropdown = () => setShowRentalDropdown(!showRentalDropdown);
 
-  console.log(state.info,"dchwouiehcscnowehcnaiosjhdwexdnwoehc")
 
   return (
     <>
       {/* Navbar */}
       <div
-        className={`sticky top-0 left-0 w-full ${
+        className={`sticky top-0 left-0 w-full py-3 ${
           isScrolled ? "bg-white border-b border-gray-200 shadow-lg" : "bg-white"
         } transition-all duration-300 ease-in-out z-50`}
       >
         <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-24 lg:py-2 pt-0 md pb-0 md flex justify-between items-center">
           <Link href={"/"}>
-            <figure className="w-32 md:w-40">
+            <figure>
               <img
-                className="w-full h-full rounded-full object-cover m-5"
+                className="w-[280px]"
                 src={`${storageurl}/${state?.info?.logo}`}
                 width={100}
                 height={100}

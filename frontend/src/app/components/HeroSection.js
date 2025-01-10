@@ -11,7 +11,7 @@ import Swal from "sweetalert2";
 import { useSelector } from "react-redux";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { Autoplay} from 'swiper/modules';
+import { Autoplay } from "swiper/modules";
 const HeroSection = () => {
   const [textdata, settextData] = useState();
   const [number, setPhone] = useState("");
@@ -23,12 +23,11 @@ const HeroSection = () => {
 
   const handelchange = (e) => {
     settextData({ ...textdata, [e.target.name]: e.target.value });
-
   };
 
   useEffect(() => {
     let date = new Date(Date.now());
-    date = `${date.getDay()}-${date.getMonth()+1}-${date.getFullYear()}`;
+    date = `${date.getDay()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     settextData({ ...textdata, date });
   }, []);
 
@@ -36,24 +35,17 @@ const HeroSection = () => {
 
   const handelforSubmit = async (e) => {
     e.preventDefault();
-  
+
     settextData({ ...textdata, number: number });
-
-
-
 
     const info = await axios.post(`${rooturl}/message`, textdata);
     if (info.data.success) {
-      
       Swal.fire({
         title: "Success!",
         text: info.data.message,
         icon: "success",
         confirmButtonText: "ok",
       });
-
-
-
     }
 
     window.location.reload();
@@ -62,16 +54,14 @@ const HeroSection = () => {
   return (
     <div className=" relative  lg:mb-[100px]">
       <Swiper
-         spaceBetween={0}
-         slidesPerView={1}
-         loop={true}
-         autoplay={{
-           delay: 1500,
-           disableOnInteraction: false, 
-         }}
-
-
-         modules={[Autoplay]}
+        spaceBetween={0}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{
+          delay: 1500,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay]}
         navigation={{
           nextEl: ".swiper-button-next", // Custom next button
           prevEl: ".swiper-button-prev", // Custom prev button
@@ -182,26 +172,17 @@ const HeroSection = () => {
               </label>
               <div className="relative">
                 <span className="absolute left-3 top-2 text-gray-700">+91</span>
-                {/* <input
-                  id="phone"
-                  type="text"
-                  placeholder="Enter Your Phone Number"
-                  className="w-full pl-12 pr-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-red-300"
-                  name="number"
-                  value={textdata?.number}
-                  required
-                  onChange={(e) => handelchange(e)}
-                /> */}
+               
                 <PhoneInput
-        country={"in"} // Default country
-        value={number}  // Bind state to the phone input
-        onChange={handlePhoneChange} // Update state on change
-        inputProps={{
-          name: "number",
-          required: true,
-          autoFocus: true,
-        }}
-      />
+                  country={"in"} // Default country
+                  value={number} // Bind state to the phone input
+                  onChange={handlePhoneChange} // Update state on change
+                  inputProps={{
+                    name: "number",
+                    required: true,
+                    autoFocus: true,
+                  }}
+                />
               </div>
             </div>
 

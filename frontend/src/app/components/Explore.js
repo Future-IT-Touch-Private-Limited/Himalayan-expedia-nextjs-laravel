@@ -71,7 +71,7 @@ const Explore = () => {
       <div className="nc-SectionGridCategoryBox relative my-5 md:my-10 lg:my-16">
         <div className="nc-Section-Heading relative mb-10 text-neutral-900 dark:text-neutral-50">
           <div className="mx-auto mb-4 w-full max-w-2xl text-center">
-            <h2 className="text-2xl md:text-3xl font-semibold lg:text-4xl">Explore nearby</h2>
+            <h2 className="text-2xl md:text-3xl font-semibold text-neutral-900 lg:text-4xl">Explore nearby</h2>
             <span className="mt-2 block text-base font-normal text-neutral-500 dark:text-neutral-400 sm:text-lg md:mt-3">
               Discover great places near where you live
             </span>

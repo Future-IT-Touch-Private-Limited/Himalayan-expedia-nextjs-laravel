@@ -75,6 +75,7 @@ useEffect(()=>{
   fetchflagData()
   dispatch(getCountry())
 },[])
+
 useEffect(()=>{
   setFilterCard(state.data) 
  

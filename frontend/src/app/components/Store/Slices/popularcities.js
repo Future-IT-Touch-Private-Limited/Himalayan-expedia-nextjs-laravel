@@ -5,25 +5,26 @@ import { rooturl } from "../Rooturl";
 import { createSlice } from "@reduxjs/toolkit";
 
 export const getpopularCity = createAsyncThunk(
-  "/country",
+  "/popularcities",
   async (country) => {
-    const res = await axios.get(`${rooturl}/singletours/${country}`);
+    const res = await axios.get(`${rooturl}/popular-cities`);
+    console.log('wrfrwfr',res.data)
     return res.data;
   }
 );
 
 const popularCity = createSlice({
-  name: "singlecountry",
+  name: "popularcities",
   initialState: { data: [], isLoading: false, isError: false },
   extraReducers: (builder) => {
-    builder.addCase(getsinglecountry.pending, (state) => {
+    builder.addCase(getpopularCity.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(getsinglecountry.fulfilled, (state, action) => {
+    builder.addCase(getpopularCity.fulfilled, (state, action) => {
       state.data = action.payload;
       state.isLoading = false;
     });
-    builder.addCase(getsinglecountry.rejected, (state) => {
+    builder.addCase(getpopularCity.rejected, (state) => {
       state.isError = true;
       state.isLoading = false;
     });

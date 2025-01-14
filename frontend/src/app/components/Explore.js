@@ -1,7 +1,11 @@
 "use client"
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import Link from 'next/link';
+
+import { useDispatch, useSelector } from "react-redux";
+import { getpopularCity } from "./Store/Slices/popularcities";
+import { storageurl } from "./Store/Rooturl";
 const locations = [
   {
     title: 'New York',
@@ -66,6 +70,19 @@ const locations = [
 ];
 
 const Explore = () => {
+  const dispatch=useDispatch()
+  const popularcities =useSelector(state=>state.popularcities)
+
+  useEffect(()=>{
+ 
+    dispatch(getpopularCity())
+
+
+  },[])
+
+  console.log('popularcities',popularcities)
+
+
   return (
     <>
       <div className="nc-SectionGridCategoryBox relative my-5 md:my-10 lg:my-16">
@@ -78,31 +95,31 @@ const Explore = () => {
           </div>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 md:gap-8 px-5 md:px-16 xl:px-32 py-3">
-          {locations.map((location, index) => (
-            <Link
+          {popularcities?.data?.map((location, index) => (
+           <>
+            <div
               key={index}
               className="nc-CardCategoryBox1 nc-box-has-hover nc-dark-box-bg-has-hover relative flex flex-col md:flex-row items-center p-3 sm:p-6 border border-gray-350 rounded-2xl text-center md:text-start"
-              href={location.link}
+            
             >
-              <span className="nc-Badge hidden px-2.5 py-1 rounded-full font-medium text-xs absolute end-1 md:end-2 top-2 text-gray-800 bg-gray-100">
-                {location.badge}
-              </span>
-              <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-full">
+             
+              <div className="relative h-22 w-22 flex-shrink-0 overflow-hidden rounded-full">
                 <img
-                  alt={`Image of ${location.title}`}
-                  src={location.image}
+                  alt={`Image of ${location.cityname}`}
+                  src={`${storageurl}/${location.img}`}
                   className="absolute h-full w-full object-cover"
                 />
               </div>
               <div className="ms-4 flex-grow overflow-hidden">
                 <h2 className="text-base font-medium">
-                  <span className="line-clamp-1">{location.title}</span>
+                  <span className="line-clamp-1">{location.cityname}</span>
                 </h2>
                 <span className="mt-2 block text-sm text-neutral-500 dark:text-neutral-400">
-                  {location.distance}
+                19 minutes drive
                 </span>
               </div>
-            </Link>
+            </div>
+           </>
           ))}
         </div>
       </div>

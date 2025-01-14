@@ -8,9 +8,27 @@ class ALlTourController extends Controller
 {
     //
 public function getAlltours(){
-$Product=Product::all()->select("cover_img","title","days","price","ratting","slug","tour_type");
+$Product=Product::all()->select("cover_img","title","cityname","days","price","ratting","slug","tour_type");
 return $Product;
 }
+
+public function getfiltercity(string $slug)
+{
+
+
+    $query = Product::select("cover_img", "title", "cityname", "days", "price", "ratting", "slug", "tour_type");
+
+    // Apply the filter if cityname is provided
+    if (!empty($slug)) {
+        $query->where('cityname', $slug);
+    }
+
+    // Fetch the results
+    $products = $query->get();
+
+    return $products;
+}
+
 public function getSingleTour(string $slug){
     $Product=Product::where("slug",$slug)->first();
     return $Product;

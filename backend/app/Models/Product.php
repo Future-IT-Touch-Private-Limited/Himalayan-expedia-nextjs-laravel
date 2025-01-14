@@ -20,7 +20,8 @@ class Product extends Model
 "stay_information",
 "img",
 "days",
-"slug"
+"slug",
+"cityname"
     ];
 
     protected $casts = [

@@ -4,11 +4,12 @@ import axios from "axios";
 import { rooturl } from "../Rooturl";
 import { createSlice } from "@reduxjs/toolkit";
 
-export const getCountry = createAsyncThunk("/countries", async () => {
-  const res = await axios.get(`${rooturl}/alltours`);
+export const getCountry = createAsyncThunk("/countries", async (slug = null) => {
+
+  const url = slug ? `${rooturl}/v1/alltours/${slug}` : `${rooturl}/alltours`;
+  const res = await axios.get(url);
   return res.data;
 });
-
 const countryslice = createSlice({
   name: "country",
   initialState: { data: [], isLoading: false, isError: false },

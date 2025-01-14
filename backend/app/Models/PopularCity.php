@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class PopularCity extends Model
 {
-    protected $fillable = ['cityname', 'img'];
+    protected $fillable = ['cityname', 'img','slug'];
 }

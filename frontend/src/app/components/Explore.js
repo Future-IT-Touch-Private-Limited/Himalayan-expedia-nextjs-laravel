@@ -97,11 +97,14 @@ const Explore = () => {
         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 sm:gap-6 md:gap-8 px-5 md:px-16 xl:px-32 py-3">
           {popularcities?.data?.map((location, index) => (
            <>
-            <div
+            <Link
               key={index}
+              href={`city/${location.slug}`}
               className="nc-CardCategoryBox1 nc-box-has-hover nc-dark-box-bg-has-hover relative flex flex-col md:flex-row items-center p-3 sm:p-6 border border-gray-350 rounded-2xl text-center md:text-start"
             
             >
+
+            
              
               <div className="relative h-22 w-22 flex-shrink-0 overflow-hidden rounded-full">
                 <img
@@ -114,11 +117,11 @@ const Explore = () => {
                 <h2 className="text-base font-medium">
                   <span className="line-clamp-1">{location.cityname}</span>
                 </h2>
-                <span className="mt-2 block text-sm text-neutral-500 dark:text-neutral-400">
+                {/* <span className="mt-2 block text-sm text-neutral-500 dark:text-neutral-400">
                 19 minutes drive
-                </span>
+                </span> */}
               </div>
-            </div>
+            </Link>
            </>
           ))}
         </div>

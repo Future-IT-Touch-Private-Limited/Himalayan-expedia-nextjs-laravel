@@ -22,7 +22,7 @@ use Filament\Tables\Columns\ImageColumn;
 
 class TourinfoResource extends Resource
 {
-    protected static ? string $model = Product::class;
+    protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -32,42 +32,53 @@ class TourinfoResource extends Resource
             ->schema([
                 TextInput::make('title')->required()->label("Title"),
                 FileUpload::make('cover_img')->required()->label("Cover Image"),
-                // TextInput::make('tour_type')->required()->label("Title"),
+
                 Select::make('tour_type')->required()
-    ->options([
-        'Sightseeing tours' => 'Sightseeing tours',
-        'Adventure tours' => 'Adventure tours',
-        'Cultural or historical tours' => 'Cultural or historical tours',
-        "Specialty tours"=>"Specialty tours",
-        "Package tours"=>"Package tours",
+                    ->options([
+                        'Sightseeing tours' => 'Sightseeing tours',
+                        'Adventure tours' => 'Adventure tours',
+                        'Cultural or historical tours' => 'Cultural or historical tours',
+                        "Specialty tours" => "Specialty tours",
+                        "Package tours" => "Package tours",
 
-    ])->label("Tour Type"),
-    // ratting
-    TextInput::make('groupSize')->required()->label("groupSize"),
-    Select::make('ratting')->required()
-    ->options([
-     "1"=>"1 Star",
-     "2"=>"2 Star",
-     "3"=>"3 Star",
-     "4"=>"4 Star",
-     "5"=>"5 Star",
+                    ])->label("Tour Type"),
+                // ratting
+                
+                TextInput::make('groupSize')->required()->label("groupSize"),
 
-    ])->label("Ratting"),
-    
-    TextInput::make('country')->required()->label("Country"),
-    TextInput::make('city')->required()->label("City"),
-    TextInput::make('price')->required()->label("Price"),
-    FileUpload::make('img')->required()->label("Images")->multiple(5),
-
-    TextInput::make('days')->required()->label("days"),
-    Repeater::make('stay_information')->required()
-    ->schema([
-        RichEditor::make('des')
+                Select::make('cityname')
+        ->options(function () {
+            return \DB::table('popular_cities')->pluck('cityname', 'slug');
+        })
+        ->searchable() // Allow search functionality
+        ->required()
+        ->label("Popular City"),
 
 
-    ]),
-    
-    
+                Select::make('ratting')->required()
+                    ->options([
+                        "1" => "1 Star",
+                        "2" => "2 Star",
+                        "3" => "3 Star",
+                        "4" => "4 Star",
+                        "5" => "5 Star",
+
+                    ])->label("Ratting"),
+
+                TextInput::make('country')->required()->label("Country"),
+                TextInput::make('city')->required()->label("City"),
+                TextInput::make('price')->required()->label("Price"),
+                FileUpload::make('img')->required()->label("Images")->multiple(5),
+
+                TextInput::make('days')->required()->label("days"),
+                Repeater::make('stay_information')->required()
+                    ->schema([
+                        RichEditor::make('des')
+
+
+                    ]),
+
+
 
 
 
@@ -91,7 +102,7 @@ class TourinfoResource extends Resource
 
                 TextColumn::make('days')->label("Days"),
                 TextColumn::make('stay_information')->label("Stay Information"),
-               
+
 
 
             ])

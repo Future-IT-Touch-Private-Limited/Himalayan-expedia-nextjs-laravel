@@ -23,8 +23,26 @@ class PopularCityResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('cityname')->required()->label('City Name'),
-                Forms\Components\FileUpload::make('img')->image()->required()->label('Image'),
+                Forms\Components\TextInput::make('cityname')
+                    ->required()
+                    ->label('City Name')
+                    ->reactive() // Reactively listen for changes to update the slug
+                    ->debounce(500) // Add a 500ms delay to improve performance
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $set('slug', \Str::slug($state)); // Automatically generate a slug
+                    }),
+                Forms\Components\TextInput::make('slug')
+                    ->required()
+                    ->label('Slug')
+                    ->unique('popular_cities', 'slug') // Ensure the slug is unique in the database
+                    ->disabled() // Make it non-editable (optional)
+                    ->hint('Generated automatically based on the city name'),
+                Forms\Components\FileUpload::make('img')
+                    ->image()
+                    ->required()
+                    ->label('Image'),
+
+
             ]);
     }
 

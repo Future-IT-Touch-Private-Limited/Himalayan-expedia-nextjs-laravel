@@ -19,9 +19,9 @@ export default function Footer() {
         
             <div className="flex flex-col items-center lg:items-start gap-4">
               <Link href="/">
-                <figure className="w-[100px] bg-white rounded-md p-2 transition hover:shadow-xl text-sm text-justify">
+                <figure className="w-[228px] bg-white rounded-md p-2 transition hover:shadow-xl text-sm text-justify">
                   <img
-                    className="rounded-md object-cover w-[120px]  sm-text-justify"
+                    className="rounded-md object-cover w-[228px]  sm-text-justify"
                     src={`${storageurl}/${state?.info?.logo}`}
                     width={100}
                     height={50}

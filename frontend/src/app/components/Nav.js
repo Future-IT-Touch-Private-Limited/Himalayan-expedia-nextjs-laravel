@@ -60,7 +60,7 @@ dispach(getHomeInfo())
           <Link href={"/"}>
             <figure>
               <img
-                className="w-[280px]"
+                className="w-[228px]"
                 src={`${storageurl}/${state?.info?.logo}`}
                 width={100}
                 height={100}

@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Visit Zanskar, Ladakh - Explore the Untouched Paradise",
-  description: "Discover exclusive travel deals and packages for Zanskar, Ladakh. Plan your trip to the serene landscapes, majestic mountains, and cultural heritage of this remote Himalayan region.",
+  description: "Discover exclusive Visit Zanskar Ladakh and packages for Zanskar, Ladakh. Plan your trip to the serene landscapes, majestic mountains, and cultural heritage of this remote Himalayan region.",
   keywords: [
-    "Zanskar travel deals",
+    "Zanskar Visit Zanskar Ladakh",
     "Ladakh tourism",
     "Visit Zanskar",
     "Himalayan adventures",
@@ -32,7 +32,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Visit Zanskar, Ladakh - Explore the Untouched Paradise",
-    description: "Discover the best travel deals and unforgettable experiences in Zanskar, Ladakh. Plan your adventure today!",
+    description: "Discover the best Visit Zanskar Ladakh and unforgettable experiences in Zanskar, Ladakh. Plan your adventure today!",
 
   },
 

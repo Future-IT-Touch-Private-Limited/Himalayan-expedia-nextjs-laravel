@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { BsFillStarFill } from "react-icons/bs";
 import { storageurl } from '../Store/Rooturl';
 export default function TestMonialCard({elm}) {
-    const {heading,review,image,name,position,stars}=elm
+    const {heading,review,img,name,position,stars}=elm
     const stararry=[]
     for(let i=1;i<=stars;i++){
       stararry.push(i)
@@ -29,8 +29,8 @@ export default function TestMonialCard({elm}) {
           <div className="reviewUserDetails flex gap-4 items-center">
             <figure className="w-16 h-16">
               <img
-                // src={`${storageurl}/${image}`}
-                src='/img/asset 12.png'
+                src={`${storageurl}/${img}`}
+                // src='/img/asset 12.png'
                 alt="user review"
                 className="rounded-full object-cover"
               />

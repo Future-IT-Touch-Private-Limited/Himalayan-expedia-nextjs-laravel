@@ -35,11 +35,11 @@ export default function TestiMonial() {
             <BsFillStarFill />
           </div>
           <div className="text-xl md:text-3xl lg:text-5xl font-semibold">
-            <h2>The 5 star visa company</h2>
+            <h2>The 5 star Trip Planner</h2>
           </div>
           <div className=" hidden  md:flex flex-col justify-start md:flex-row items-center text-xl font-light gap-2">
             <h6 className="flex items-center text-xl font-light gap-2 text-center">
-              Travel Deals is a top-rated visa company,  on <span className="md:hidden">Google</span>  &nbsp;
+              Visit Zanskar Ladakh is a top-rated Trip Planner,  on <span className="md:hidden">Google</span>  &nbsp;
               <img
                 className="h-5 w-5 hidden md:block"
                 src="/img/asset-9.png"

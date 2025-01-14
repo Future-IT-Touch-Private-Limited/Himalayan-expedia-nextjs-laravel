@@ -145,7 +145,7 @@ export default function TouritsSingleProdcutVisa({ elm, onAppliedfrom }) {
                               <div className="flex justify-between text-nowrap my-2 ">
                                 {" "}
                                 <p className="text-gray-700">
-                                  Travel Deals fees :
+                                  Visit Zanskar Ladakh fees :
                                 </p>{" "}
                                 <p>₹{sitefee}</p>{" "}
                               </div>

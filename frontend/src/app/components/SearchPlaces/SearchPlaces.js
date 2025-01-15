@@ -21,7 +21,7 @@ import { storageurl } from "../Store/Rooturl";
 
 
 
-export default function SearchPlaces() {
+export default function SearchPlaces({dataMine}) {
   // const [loadMore, setLoadMore] = useState(8);
   const dispatch=useDispatch()
   const state=useSelector(state=>state.countryslices)

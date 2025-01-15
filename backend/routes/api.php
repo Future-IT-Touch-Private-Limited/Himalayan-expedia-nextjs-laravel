@@ -18,6 +18,8 @@ Route::get('/user', function (Request $request) {
 Route::get("/v1/alltours",[ALlTourController::class,"getAlltours"]);
 Route::get("/v1/singletours/{slug}",[ALlTourController::class,"getSingleTour"]);
 Route::get("/v1/alltours/{slug}",[ALlTourController::class,"getfiltercity"]);
+Route::get("/v1/service",[ALlTourController::class,"getServicename"]);
+
 
 // getfiltercity
 

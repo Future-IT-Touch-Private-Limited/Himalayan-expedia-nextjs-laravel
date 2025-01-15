@@ -12,7 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getHomeInfo } from "./Store/Slices/homeSlice";
 import { storageurl } from "./Store/Rooturl";
 
+
+
 const Navbar = () => {
+  const [services, setServices] = useState([]);
+  const [error, setError] = useState(null);
   const [toggler, setToggler] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showRentalDropdown, setShowRentalDropdown] = useState(false);
@@ -44,9 +48,31 @@ dispach(getHomeInfo())
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    const getService = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/v1/service');
+    
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setServices(data);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    getService();
+  }, []);
+
   const closeMenu = () => setToggler(false);
   const toggleRentalDropdown = () => setShowRentalDropdown(!showRentalDropdown);
 
+
+
+  console.log('services',services)
 
   return (
     <>
@@ -78,13 +104,24 @@ dispach(getHomeInfo())
                 <Link href="/contact" className="hover:text-gray-700">
                    Services
                 </Link>
-                <div className="absolute md:w-max lg:w-[220px] md:-right-10 lg:left-0 mt-2 space-y-2 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-in-out">
+                {/* <div className="absolute md:w-max lg:w-[220px] md:-right-10 lg:left-0 mt-2 space-y-2 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-in-out">
                   <Link href="/Coach-Rental" className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg">
                   Car and Coach Rental
                   </Link>
                   <Link href="/hotel-booking" className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg">
                  Hotel Booking
                   </Link>
+                </div> */}
+              <div className="absolute md:w-max lg:w-[220px] md:-right-10 lg:left-0 mt-2 space-y-2 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-in-out">
+                {
+                  services.map((service)=>{
+                    return(
+                      <div className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
+                        <Link href={`/${service.slug}`}>{service.title}</Link>
+                      </div>
+                    )
+                  })
+                }
                 </div>
               </li>
               <li><Link href="/contact">Contact</Link></li>
@@ -177,16 +214,33 @@ dispach(getHomeInfo())
 
             {/* Dropdown Items */}
             {showRentalDropdown && (
-              <div className="ml-8 flex flex-col gap-3">
-                <Link href="/Coach-Rental" onClick={closeMenu} className="cursor-pointer  p-2 hover:bg-gray-200 transition">
-                Car and Coach Rental
-                </Link>
-                <Link href="/hotel-booking" onClick={closeMenu} className="cursor-pointer p-2 hover:bg-gray-200 transition">
-                Hotel Booking
+              // <div className="ml-8 flex flex-col gap-3">
+              //   <Link href="/Coach-Rental" onClick={closeMenu} className="cursor-pointer  p-2 hover:bg-gray-200 transition">
+              //   Car and Coach Rental
+              //   </Link>
+              //   <Link href="/hotel-booking" onClick={closeMenu} className="cursor-pointer p-2 hover:bg-gray-200 transition">
+              //   Hotel Booking
 
-                </Link>
+              //   </Link>
                
+              // </div>
+
+             
+
+              <>
+              <div className="ml-8 flex flex-col gap-3">
+              
+              {
+                services.map((service)=>{
+                  return(
+                    <div className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
+                      <Link href={`/${service.slug}`}>{service.title}</Link>
+                    </div>
+                  )
+                })
+              }
               </div>
+              </>
             )}
           </div>
 

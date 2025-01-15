@@ -19,7 +19,8 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
-
+use Filament\Forms\Components\Toggle;
+use Filament\Tables\Columns\ToggleColumn;
 class TourinfoResource extends Resource
 {
     protected static ?string $model = Product::class;
@@ -30,6 +31,7 @@ class TourinfoResource extends Resource
     {
         return $form
             ->schema([
+                Toggle::make('toggle_show'),
                 TextInput::make('title')->required()->label("Title"),
                 FileUpload::make('cover_img')->required()->label("Cover Image"),
 
@@ -89,6 +91,7 @@ class TourinfoResource extends Resource
     {
         return $table
             ->columns([
+                ToggleColumn::make('toggle_show')->label(" Show  "),
                 TextColumn::make('title')->label("Title"),
                 ImageColumn::make("cover_img")->label("Cover Image"),
                 TextColumn::make('tour_type')->label("Tour Type"),

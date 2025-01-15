@@ -8,25 +8,26 @@ use Illuminate\Support\Str;
 class Product extends Model
 {
     //
-    protected $fillable=[
-"title",
-"cover_img",
-"tour_type",
-"groupSize",
-"ratting",
-"country",
-"city",
-"price",
-"stay_information",
-"img",
-"days",
-"slug",
-"cityname"
+    protected $fillable = [
+        "title",
+        "cover_img",
+        "tour_type",
+        "groupSize",
+        "ratting",
+        "country",
+        "city",
+        "price",
+        "stay_information",
+        "img",
+        "days",
+        "slug",
+        "cityname",
+        "toggle_show"
     ];
 
     protected $casts = [
         "stay_information" => "array",
-              "img" => "array",
+        "img" => "array",
     ];
 
     protected static function boot()
@@ -39,6 +40,4 @@ class Product extends Model
             }
         });
     }
-
-
 }

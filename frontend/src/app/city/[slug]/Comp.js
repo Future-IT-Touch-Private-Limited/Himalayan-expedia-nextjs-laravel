@@ -13,12 +13,12 @@ export default function Comp({slug}) {
     const  data = useSelector((state) => state.countryslices);
   
     useEffect(() => {
-      dispatch(getCountry(slug.slug)); // Fetch data based on the slug
+      dispatch(getCountry(slug.slug)); 
     }, [dispatch, slug]);
   
 
     
-    console.log('24r42r42r42',data)
+
   
   return (
    <>

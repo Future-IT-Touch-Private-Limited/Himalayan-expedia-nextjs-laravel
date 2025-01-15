@@ -65,6 +65,13 @@ export default function Footer() {
                 <FaPhoneAlt className="mr-2 text-yellow-500" /> Contact Us
               </Link>
             
+              <Link
+              target="_blank"
+                href="https://yuvaandiliciousfoods.in/admin/login"
+                className="flex items-center text-sm hover:underline hover:text-yellow-500 transition-all"
+              >
+                <FaPhoneAlt className="mr-2 text-yellow-500" /> Admin
+              </Link>
                
             </div>
 

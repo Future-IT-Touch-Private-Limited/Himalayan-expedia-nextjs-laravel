@@ -116,7 +116,7 @@ dispach(getHomeInfo())
                 {
                   services.map((service)=>{
                     return(
-                      <div className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
+                      <div key={id} className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
                         <Link href={`/${service.slug}`}>{service.title}</Link>
                       </div>
                     )
@@ -231,9 +231,9 @@ dispach(getHomeInfo())
               <div className="ml-8 flex flex-col gap-3">
               
               {
-                services.map((service)=>{
+                services.map((service,id)=>{
                   return(
-                    <div className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
+                    <div key={id} className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
                       <Link href={`/${service.slug}`}>{service.title}</Link>
                     </div>
                   )

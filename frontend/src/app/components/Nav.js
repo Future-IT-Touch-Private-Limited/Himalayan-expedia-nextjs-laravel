@@ -114,7 +114,7 @@ dispach(getHomeInfo())
                 </div> */}
               <div className="absolute md:w-max lg:w-[220px] md:-right-10 lg:left-0 mt-2 space-y-2 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-300 ease-in-out">
                 {
-                  services.map((service)=>{
+                  services.map((service,id)=>{
                     return(
                       <div key={id} className="block px-4 py-3 text-gray-700 hover:bg-gray-100 hover:shadow-md rounded-lg" >
                         <Link href={`/${service.slug}`}>{service.title}</Link>

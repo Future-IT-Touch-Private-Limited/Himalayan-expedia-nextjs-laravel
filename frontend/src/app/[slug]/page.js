@@ -5,19 +5,23 @@ import axios from "axios";
 import { Realpage } from "./realpage";
 import { rooturl } from "../components/Store/Rooturl";
 import Swal from "sweetalert2";
-
+import useSWR from 'swr'
 export default async function Page({ params: { slug } }) {
   try {
     // Fetch property data dynamically based on slug
-    const response = await axios.get(`${rooturl}/singletours/${slug}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    // const response = await axios.get(`${rooturl}/singletours/${slug}`, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    const { data, error, isLoading } = useSWR(
+      `${rooturl}/singletours/${slug}`,
+      fetcher
+    )
 
-    const propertyData = response.data;
+    const propertyData = data;
 
-    if (!propertyData) {
+    if (!data) {
       // Show an alert if the property is not found
       Swal.fire({
         title: "Error",
@@ -48,4 +52,18 @@ export default async function Page({ params: { slug } }) {
       </div>
     );
   }
+}
+
+
+export async function getServerSideProps() {
+  // Fetch data from external API
+const response = await axios.get(`${rooturl}/singletours/${slug}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  const data = await res.json()
+ 
+  // Pass data to the page via props
+  return { props: { data } }
 }

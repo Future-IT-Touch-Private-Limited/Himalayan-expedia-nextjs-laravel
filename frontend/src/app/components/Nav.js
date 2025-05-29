@@ -51,7 +51,7 @@ dispach(getHomeInfo())
   useEffect(() => {
     const getService = async () => {
       try {
-        const response = await fetch('https://yuvaandiliciousfoods.in/api/v1/service');
+        const response = await fetch('https://admin.visitzanskarladakh.in/api/v1/service');
     
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

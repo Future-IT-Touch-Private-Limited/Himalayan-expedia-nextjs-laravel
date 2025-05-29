@@ -67,7 +67,7 @@ export default function Footer() {
             
               <Link
               target="_blank"
-                href="https://yuvaandiliciousfoods.in/admin/login"
+                href="https://admin.visitzanskarladakh.in/admin/login"
                 className="flex items-center text-sm hover:underline hover:text-yellow-500 transition-all"
               >
                 <FaPhoneAlt className="mr-2 text-yellow-500" /> Admin
